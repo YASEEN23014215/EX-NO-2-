@@ -1,12 +1,5 @@
 ## EX. NO:2 IMPLEMENTATION OF PLAYFAIR CIPHER
-
- 
-
 ## AIM:
- 
-
- 
-
 To write a C program to implement the Playfair Substitution technique.
 
 ## DESCRIPTION:
@@ -20,9 +13,6 @@ To encrypt a message, one would break the message into digrams (groups of 2 lett
 4.	If the letters are not on the same row or column, replace them with the letters on the same row respectively but at the other pair of corners of the rectangle defined by the original pair.
 ## EXAMPLE:
 ![image](https://github.com/Hemamanigandan/EX-NO-2-/assets/149653568/e6858d4f-b122-42ba-acdb-db18ec2e9675)
-
- 
-
 ## ALGORITHM:
 
 STEP-1: Read the plain text from the user.
@@ -30,14 +20,54 @@ STEP-2: Read the keyword from the user.
 STEP-3: Arrange the keyword without duplicates in a 5*5 matrix in the row order and fill the remaining cells with missed out letters in alphabetical order. Note that ‘i’ and ‘j’ takes the same cell.
 STEP-4: Group the plain text in pairs and match the corresponding corner letters by forming a rectangular grid.
 STEP-5: Display the obtained cipher text.
+## PROGRAM:
+~~~
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    unsigned int a[3][3]={{6,24,1},{13,16,10},{20,17,15}};
+    unsigned int b[3][3]={{8,5,10},{21,8,21},{21,12,8}};
+    int i,j, t=0;
+    unsigned int c[20],d[20];
+    char msg[20];
+    scanf("%s",msg);
+    printf("Enter plain text:%s\n",msg);
 
+    for(i=0;i<strlen(msg);i++)
+    {
+        c[i]=msg[i]-65;
+        printf("%d ",c[i]);
+    }
+    for(i=0;i<3;i++)
+    {
+        t=0;
+        for(j=0;j<3;j++)
+        {
+            t=t+(a[i][j]*c[j]);
+        }
+        d[i]=t%26;
+    }
+    printf("\nEncrypted Cipher Text :");
+    for(i=0;i<3;i++)
+    printf(" %c",d[i]+65);
+    for(i=0;i<3;i++)
+    {
+        t=0;
+        for(j=0;j<3;j++)
+        {
+            t=t+(b[i][j]*d[j]);
+        }
+        c[i]=t%26;
+    }
+    printf("\nDecrypted Cipher Text :");
+    for(i=0;i<3;i++)
+    printf(" %c",c[i]+65);
+    return 0;
+}
+~~~
+## OUTPUT:
+<img width="538" height="201" alt="image" src="https://github.com/user-attachments/assets/04f0b1c9-e6e6-4fdc-97cd-7e32d76f8c69" />
 
-
-
-Program:
-
-
-
-
-
-Output:
+## RESULT:
+The program was executed successfully.
